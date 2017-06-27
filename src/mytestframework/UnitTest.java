@@ -1,4 +1,4 @@
-package hw_170625.sign_TDD;
+package mytestframework;
 
 public class UnitTest {
 	public static boolean assertEquals(int actual, int expected) {
