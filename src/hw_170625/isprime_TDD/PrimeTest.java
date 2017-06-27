@@ -21,6 +21,7 @@ public class PrimeTest {
 		System.out.println(Asserts.assertNotEquals(PrimeCheck.isPrime(6), true));
 
 		System.out.println(Asserts.assertEquals(PrimeCheck.isPrime(Integer.MAX_VALUE), true));		
+		System.out.println(Asserts.assertNotEquals(PrimeCheck.isPrime(Integer.MAX_VALUE), false));		
 	}
 
 }
