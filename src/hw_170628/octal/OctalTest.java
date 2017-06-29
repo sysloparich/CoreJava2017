@@ -19,6 +19,14 @@ public class OctalTest {
 		
 		System.out.println(Asserts.assertEquals(OctalTransform.oTransform(Integer.MAX_VALUE), "17777777777"));
 		System.out.println(Asserts.assertNotEquals(OctalTransform.oTransform(Integer.MAX_VALUE), "24"));
+		
+		System.out.println(Asserts.assertEquals(OctalTransform.oTransform(Integer.MIN_VALUE), "20000000000"));
+		System.out.println(Asserts.assertNotEquals(OctalTransform.oTransform(Integer.MIN_VALUE), "24"));
+		
+		System.out.println(Asserts.assertEquals(OctalTransform.oTransform(-17), "37777777757"));
+		System.out.println(Asserts.assertNotEquals(OctalTransform.oTransform(-17), "20"));
+		System.out.println(Asserts.assertEquals(OctalTransform.oTransform(-20), "37777777754"));
+		System.out.println(Asserts.assertNotEquals(OctalTransform.oTransform(-20), "37777777753"));
 
 	}
 

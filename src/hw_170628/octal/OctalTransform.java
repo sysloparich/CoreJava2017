@@ -7,12 +7,12 @@ public class OctalTransform {
 		}
 		StringBuffer result = new StringBuffer("");
 		Integer tmp = i;
-		while(tmp.intValue() / 8 != 0){
-			Integer mod = tmp%8;
-			tmp = tmp/8;
+		while(Integer.divideUnsigned(tmp.intValue(), 8) != 0){
+			Integer mod = Integer.remainderUnsigned(tmp.intValue(), 8);
+			tmp = Integer.divideUnsigned(tmp.intValue(), 8);
 			result.append(mod.toString());
 		}
-		Integer mod = tmp%8;
+		Integer mod = Integer.remainderUnsigned(tmp.intValue(), 8);
 		result.append(mod.toString());
 		return result.reverse().toString();	
 	}

@@ -17,6 +17,13 @@ public class BinaryTest {
 		
 		System.out.println(Asserts.assertEquals(BinaryTransform.bTransform(0), "0"));
 		System.out.println(Asserts.assertNotEquals(BinaryTransform.bTransform(0), "1"));
+
+		System.out.println(Asserts.assertEquals(BinaryTransform.bTransform(Integer.MAX_VALUE), "1111111111111111111111111111111"));
+		System.out.println(Asserts.assertNotEquals(BinaryTransform.bTransform(Integer.MAX_VALUE), "1"));
+		
+		System.out.println(Asserts.assertEquals(BinaryTransform.bTransform(Integer.MIN_VALUE), "10000000000000000000000000000000"));
+		System.out.println(Asserts.assertNotEquals(BinaryTransform.bTransform(Integer.MIN_VALUE), "1"));
+		
 		
 		System.out.println(Asserts.assertEquals(BinaryTransform.bTransform(-1), "11111111111111111111111111111111"));
 		System.out.println(Asserts.assertNotEquals(BinaryTransform.bTransform(-1), "1"));

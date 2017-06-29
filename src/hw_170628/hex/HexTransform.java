@@ -3,7 +3,7 @@ package hw_170628.hex;
 public class HexTransform {
 	
 	static StringBuffer helper(StringBuffer result, Integer tmp){
-		Integer mod = tmp%16;
+		Integer mod = Integer.remainderUnsigned(tmp, 16);
 		if(mod > 9){
 			result.append((char)(mod.intValue()+55));
 		}
@@ -19,9 +19,9 @@ public class HexTransform {
 		}
 		StringBuffer result = new StringBuffer("");
 		Integer tmp = i;
-		while(tmp.intValue() / 16 != 0){
+		while(Integer.divideUnsigned(tmp.intValue(), 16) != 0){
 			result = helper(result, tmp);
-			tmp = tmp/16;
+			tmp = Integer.divideUnsigned(tmp.intValue(), 16);
 		}
 		result = helper(result, tmp);
 		return result.reverse().toString();	
