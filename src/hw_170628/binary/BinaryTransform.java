@@ -8,15 +8,12 @@ public class BinaryTransform {
 		}
 		StringBuffer result = new StringBuffer("");
 		Integer tmp = i;
-		while(tmp.intValue() / 2 != 0){
-			Integer mod = tmp%2;
-			tmp = tmp/2;
+		while(Integer.divideUnsigned(tmp.intValue(), 2) != 0){
+			Integer mod = Integer.remainderUnsigned(tmp, 2);
+			tmp = Integer.divideUnsigned(tmp.intValue(), 2);
 			result.append(mod.toString());
 		}
 		result.append("1");
-		if(result.charAt(0)=='0'){
-		result.deleteCharAt(0);
-		}
 		return result.reverse().toString();	
 	}	
 }
