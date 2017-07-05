@@ -7,9 +7,8 @@ import java.util.List;
 
 public class GenomeWithSort {
 
-	private static final int WORD_SIZE = 10;
-	private static final int GENOME_SIZE = 300000;
-
+	private static final int GENOME_SIZE = 3000000;
+	
 	private static void findDuplicates(List<Word> list) {
 		int count = 0;
 		if(list.size() > 1){
@@ -22,28 +21,6 @@ public class GenomeWithSort {
 		System.out.println(count);
 	}
 	
-	static class Word implements Comparable<Word> {
-		byte[] data;
-		int offset;
-
-		public Word(byte[] data, int i) {
-			this.data = data;
-			offset = i;
-		}
-
-		@Override
-		public int compareTo(Word otherWord) {
-			for (int i = 0; i < WORD_SIZE; i++) {
-				int diff = data[offset + i] - data[otherWord.offset + i];
-				if (diff != 0) {
-					return diff;
-				}
-			}
-			return 0;
-		}
-
-	}
-
 	public static void main(String[] args) {
 
 		byte[] data = DataGenerator.generate(GENOME_SIZE);
@@ -52,7 +29,7 @@ public class GenomeWithSort {
 
 		List<Word> list = new ArrayList<>();
 
-		for (int i = 0; i <= data.length - WORD_SIZE; i++) {
+		for (int i = 0; i <= data.length - Word.WORD_SIZE; i++) {
 			list.add(new Word(data, i));
 		}
 

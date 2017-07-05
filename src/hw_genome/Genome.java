@@ -2,8 +2,7 @@ package hw_genome;
 
 public class Genome {
 
-	private static final int WORD_NAME = 10;
-	private static final int GENOME_SIZE = 300000;
+	private static final int GENOME_SIZE = 3000;
 
 	private static void findDuplicates(byte[] data, int w) {
 		int counter = 0;
@@ -41,7 +40,7 @@ public class Genome {
 		}
 		*/
 		
-		findDuplicates(data, WORD_NAME);				
+		findDuplicates(data, Word.WORD_SIZE);				
 	}
 
 }
