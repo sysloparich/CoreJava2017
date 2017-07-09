@@ -59,7 +59,7 @@ public class StringArrayList {
 	}
 
 	private boolean hasIdxError(int idx) {
-		return(idx > size || size < 1);
+		return(idx > size || isEmpty());
 	}
 	
 	public int size(){
@@ -76,4 +76,24 @@ public class StringArrayList {
 		return oldval;
 	}
 
+	public boolean isEmpty(){
+		return size == 0;
+	}
+
+	public void remove(String string) {
+		if(string != null){
+			if(size() > 0){
+				int idx = 0;
+				while(!string.equals(elements[idx]) && idx < size()){
+					++idx;
+				}
+				if(idx != size){
+					System.arraycopy(elements, idx+1, elements, idx, --size - idx);
+					elements[size] = null;
+				}
+			}
+		}		
+	}
+	
+	
 }

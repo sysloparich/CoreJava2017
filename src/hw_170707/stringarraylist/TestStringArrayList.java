@@ -44,7 +44,30 @@ public class TestStringArrayList {
 		System.out.println(Asserts.assertEquals(list2.set(1, "third"), "second"));
 		System.out.println(Asserts.assertEquals(list2.toString(), "[second, third, third]"));
 		
-
+		StringArrayList list3 = new StringArrayList();
+		System.out.println(Asserts.assertEquals(list3.isEmpty(), true));
+		System.out.println(Asserts.assertNotEquals(list3.isEmpty(), false));
+		
+		System.out.println(Asserts.assertEquals(list2.isEmpty(), false));
+		System.out.println(Asserts.assertNotEquals(list2.isEmpty(), true));
+		
+		StringArrayList list4 = new StringArrayList();
+		list4.remove("first");
+		System.out.println(Asserts.assertEquals(list4.toString(), "[]"));
+		System.out.println(Asserts.assertNotEquals(list4.toString(), "first"));
+		
+		list2.remove(new String("third"));
+		System.out.println(Asserts.assertEquals(list2.toString(), "[second, third]"));
+		System.out.println(Asserts.assertNotEquals(list2.toString(), "second, third, third"));
+		list2.remove(new String("third"));
+		System.out.println(Asserts.assertEquals(list2.toString(), "[second]"));
+		System.out.println(Asserts.assertNotEquals(list2.toString(), "second, third"));
+		list2.remove(new String("third"));
+		System.out.println(Asserts.assertEquals(list2.toString(), "[second]"));
+		System.out.println(Asserts.assertNotEquals(list2.toString(), ""));	
+		list2.remove(new String("second"));
+		System.out.println(Asserts.assertEquals(list2.toString(), "[]"));
+		System.out.println(Asserts.assertNotEquals(list2.toString(), "second"));	
 		
 	}
 
