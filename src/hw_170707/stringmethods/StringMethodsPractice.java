@@ -15,7 +15,17 @@ public class StringMethodsPractice {
 		String s5 = "  He l l o  ";
 		//             ^1     ^2   
 		String s6 = "";
-
+		
+		String replace1 = "SOME";
+		String replace2 = "OME";
+		String replace3 = "SOMS";
+		String replace4 = "";
+		
+		System.out.println(Asserts.assertEquals(replace(replace1,'S','K'),"KOME"));
+		System.out.println(Asserts.assertNotEquals(replace(replace1,'S','K'),"SOME"));
+		
+		
+		
 		System.out.println(Asserts.assertEquals(trim(s6), ""));
 		System.out.println(Asserts.assertNotEquals(trim(s6), HELLO));		
 		
@@ -35,14 +45,34 @@ public class StringMethodsPractice {
 		System.out.println(Asserts.assertNotEquals(trim(s5), s5));
 
 	}
-		
-	private static String trim(String s) {
+	
+	private static String replace(String inputstr, char from, char to) {
+		if(isStringNullOrEmpty(inputstr)){
+			return inputstr;
+		}
+		String outputstr = "";
+		for(int i = 0; i < inputstr.length(); ++i){
+			if(from == inputstr.charAt(i)){
+				outputstr += to;
+			}
+			else{
+				outputstr += inputstr.charAt(i);
+			}
+		}
+		return outputstr;
+	}
 
-		if (s == null || s.length() == 0) {
+	private static boolean isStringNullOrEmpty(String inputstr) {
+		return(inputstr == null || inputstr.length() == 0);
+	}
+
+	private static String trim(String s) {
+		
+		if(isStringNullOrEmpty(s)){
 			return s;
 		}
 		
-		if (hasNoTrailingOrLeadingSpaces(s)) {
+		if(hasNoTrailingOrLeadingSpaces(s)) {
 			return s;
 		}
 		
