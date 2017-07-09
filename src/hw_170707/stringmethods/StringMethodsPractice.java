@@ -24,6 +24,15 @@ public class StringMethodsPractice {
 		System.out.println(Asserts.assertEquals(replace(replace1,'S','K'),"KOME"));
 		System.out.println(Asserts.assertNotEquals(replace(replace1,'S','K'),"SOME"));
 		
+		System.out.println(Asserts.assertEquals(replace(replace2,'S','K'),"OME"));
+		System.out.println(Asserts.assertNotEquals(replace(replace2,'S','K'),"KOME"));
+		
+		System.out.println(Asserts.assertEquals(replace(replace3,'S','K'),"KOMK"));
+		System.out.println(Asserts.assertNotEquals(replace(replace3,'S','K'),"KOME"));
+		
+		System.out.println(Asserts.assertEquals(replace(replace4,'S','K'),""));
+		System.out.println(Asserts.assertNotEquals(replace(replace4,'S','K'),"SOME"));
+		
 		
 		
 		System.out.println(Asserts.assertEquals(trim(s6), ""));
