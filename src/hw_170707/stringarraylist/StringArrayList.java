@@ -52,12 +52,28 @@ public class StringArrayList {
 	}
 	
 	public String get(int idx){
-		if(idx > size || size < 1) return "ERROR";
+		if(hasIdxError(idx)){
+			 return "ERROR";
+		}
 		return elements[idx];
+	}
+
+	private boolean hasIdxError(int idx) {
+		return(idx > size || size < 1);
 	}
 	
 	public int size(){
 		return size;
+	}
+	
+
+	public String set(int idx, String string) {
+		if(hasIdxError(idx)){
+			 return "ERROR";
+		}
+		String oldval = get(idx);
+		elements[idx] = string;
+		return oldval;
 	}
 
 }

@@ -31,6 +31,15 @@ public class TestStringArrayList {
 		System.out.println(Asserts.assertNotEquals(list1.toString(), "first"));
 		
 		
+		StringArrayList list2 = new StringArrayList();
+		System.out.println(Asserts.assertEquals(list2.set(0, "second"), "ERROR"));
+		System.out.println(Asserts.assertEquals(list2.toString(), "[]"));
+		
+		list2.add("first");
+		System.out.println(Asserts.assertEquals(list2.set(0, "second"), "first"));
+		System.out.println(Asserts.assertEquals(list2.toString(), "[second]"));
+		
+
 		
 	}
 
