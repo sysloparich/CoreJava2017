@@ -55,6 +55,7 @@ public class StringMethodsPractice {
 
 	}
 	
+	
 	private static String replace(String inputstr, char from, char to) {
 		if(isStringNullOrEmpty(inputstr)){
 			return inputstr;
@@ -70,10 +71,12 @@ public class StringMethodsPractice {
 		}
 		return outputstr;
 	}
+	
 
 	private static boolean isStringNullOrEmpty(String inputstr) {
 		return(inputstr == null || inputstr.length() == 0);
 	}
+	
 
 	private static String trim(String s) {
 		
@@ -92,6 +95,7 @@ public class StringMethodsPractice {
 		
 		return s.substring(i,j+1);
 	}
+	
 
 	private static boolean hasNoTrailingOrLeadingSpaces(String s) {
 		return s.indexOf(' ') != 0 && s.lastIndexOf(' ') != s.length() - 1;

@@ -29,7 +29,7 @@ public class StringArrayList {
 		if(size() != 0){
 			sb.append(get(0)); 
 			for(int i = 1; i < size(); ++i){
-				sb.append("," + elements[i]);
+				sb.append(", " + elements[i]);
 			}
 		}
 		sb.append("]");	

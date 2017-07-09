@@ -27,6 +27,8 @@ public class TestStringArrayList {
 		
 		list1.add("second");
 		list1.add("third");
+		System.out.println(Asserts.assertEquals(list1.toString(), "[first, second, third]"));
+		System.out.println(Asserts.assertNotEquals(list1.toString(), "first"));
 		
 		
 		
