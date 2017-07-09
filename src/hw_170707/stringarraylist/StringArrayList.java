@@ -4,11 +4,13 @@ import mytestframework.Asserts;
 
 public class StringArrayList {
 
+	private static final String HELLO = "Hello";
+
 	public static void main(String[] args) {
 		
 		
 		String s = "   Hello ";
-		String s2 = "Hello";  // trimmed
+		String s2 = HELLO;  // trimmed
 		String s3 = "  Hello";
 		String s4 = "Hello  ";
 		String s5 = "  He l l o  ";
@@ -16,13 +18,24 @@ public class StringArrayList {
 		String s6 = "";
 
 		System.out.println(Asserts.assertEquals(trim(s6), ""));
-		System.out.println(Asserts.assertNotEquals(trim(s6), "Hello"));		
+		System.out.println(Asserts.assertNotEquals(trim(s6), HELLO));		
 		
 		System.out.println(Asserts.assertEquals(trim(s2), s2));
 		System.out.println(Asserts.assertNotEquals(trim(s2), s5));
 
 		System.out.println(Asserts.assertEquals(trim(s4), s2));
 		System.out.println(Asserts.assertNotEquals(trim(s4), s4));
+		
+		System.out.println(Asserts.assertEquals(trim(s3), HELLO));
+		System.out.println(Asserts.assertNotEquals(trim(s3), s3));
+		
+		System.out.println(Asserts.assertEquals(trim(s), HELLO));
+		System.out.println(Asserts.assertNotEquals(trim(s), s));
+		
+		System.out.println(Asserts.assertEquals(trim(s5), "He l l o"));
+		System.out.println(Asserts.assertNotEquals(trim(s5), s5));
+		
+		
 
 	}
 	
