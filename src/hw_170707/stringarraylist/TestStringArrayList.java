@@ -39,6 +39,11 @@ public class TestStringArrayList {
 		System.out.println(Asserts.assertEquals(list2.set(0, "second"), "first"));
 		System.out.println(Asserts.assertEquals(list2.toString(), "[second]"));
 		
+		list2.add("second");
+		list2.add("third");
+		System.out.println(Asserts.assertEquals(list2.set(1, "third"), "second"));
+		System.out.println(Asserts.assertEquals(list2.toString(), "[second, third, third]"));
+		
 
 		
 	}
