@@ -53,8 +53,35 @@ public class StringLinkedList {
 	}
 	
 	public String remove(int index) {
-		// TODO  Home work
-		return null;
+		
+		if(index >= size || index < 0 ) return null;
+
+		Node current = first;
+		Node prev = null;
+		
+		String result = first.value;
+		
+		int i = 0;
+		while(i != index){
+			prev = current;
+			current = current.next;
+			result = current.value;
+			++i;
+		}
+		
+		if(prev == null){
+			first = current.next;
+		} else{
+			prev.next = current.next;
+		}
+		
+		if(first == null){
+			last = null;
+		}
+		
+		size--;		
+		
+		return result;
 	}
 	
 	@Override
