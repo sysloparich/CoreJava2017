@@ -1,7 +1,5 @@
 package hw_170712;
 
-import java.util.Stack;
-
 import mytestframework.Asserts;
 
 public class UseStringStack {
