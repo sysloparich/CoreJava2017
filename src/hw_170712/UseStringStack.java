@@ -24,7 +24,10 @@ public class UseStringStack {
 		System.out.println(Asserts.assertEquals(tosString, "fourth"));
 		System.out.println(Asserts.assertNotEquals(tosString, "third"));
 		
-		
+		StringStack stack1 = new StringStack();
+		tosString = stack1.tos();		
+		if(tosString == null) System.out.println(true);
+		System.out.println(Asserts.assertNotEquals(tosString, "first"));
 		
 	}
 

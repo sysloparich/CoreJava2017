@@ -35,7 +35,7 @@ public class StringStack {
 	
 	
 	public String tos(){
-		return(elements[--size]);
+		return size <= 0 ? null : elements[--size];	
 	}
 	
 	
