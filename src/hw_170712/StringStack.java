@@ -11,8 +11,9 @@ public class StringStack {
 	}
 	
 	
-	StringStack(int size){
-		this.size = size;
+	StringStack(int maxSize){
+		elements = new String[maxSize];
+		this.size = 0;
 	}
 	
 	
@@ -27,7 +28,8 @@ public class StringStack {
 	
 	
 	public boolean push(String smth){
-		return false;
+		elements[size++] = smth;
+		return true;
 	}
 	
 	
