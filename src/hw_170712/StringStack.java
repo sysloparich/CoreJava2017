@@ -1,6 +1,6 @@
 package hw_170712;
 
-import hw_170710.stringlinkedlist.Node;
+import java.util.Arrays;
 
 public class StringStack {
 
@@ -44,18 +44,19 @@ public class StringStack {
 	
 	
 	public String toString(){
-		StringBuilder sb = new StringBuilder("[");
-		
-		if(size != 0){
-			
-			sb.append(elements[0]);
-			for(int i = 1; i < size; ++i){
-				sb.append(", " + elements[i]);
-			}
-			
-		}
-		
-		sb.append("]");
-		return sb.toString();
+//		StringBuilder sb = new StringBuilder("[");
+//		
+//		if(size != 0){
+//			
+//			sb.append(elements[0]);
+//			for(int i = 1; i < size; ++i){
+//				sb.append(", " + elements[i]);
+//			}
+//			
+//		}
+//		
+//		sb.append("]");
+//		return sb.toString();
+		return Arrays.toString(Arrays.copyOfRange(elements, 0, size));
 	}
 }
