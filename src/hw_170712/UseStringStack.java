@@ -29,6 +29,9 @@ public class UseStringStack {
 		if(tosString == null) System.out.println(true);
 		System.out.println(Asserts.assertNotEquals(tosString, "first"));
 		
+		System.out.println(Asserts.assertEquals(stack.size(), 4));
+		System.out.println(Asserts.assertNotEquals(stack.size(), 3));
+		
 	}
 
 }

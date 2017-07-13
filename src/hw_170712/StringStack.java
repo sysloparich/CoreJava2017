@@ -13,7 +13,6 @@ public class StringStack {
 	
 	StringStack(int maxSize){
 		elements = new String[maxSize];
-		this.size = 0;
 	}
 	
 	
@@ -35,7 +34,7 @@ public class StringStack {
 	
 	
 	public String tos(){
-		return size <= 0 ? null : elements[--size];	
+		return size <= 0 ? null : elements[size-1];	
 	}
 	
 	
