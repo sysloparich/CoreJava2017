@@ -34,7 +34,13 @@ public class UseStringStack {
 		
 		String popString = stack.pop();
 		System.out.println(Asserts.assertEquals(popString, "fourth"));
-		System.out.println(Asserts.assertNotEquals(popString, "third"));	
+		System.out.println(Asserts.assertNotEquals(popString, "third"));
+		
+		StringStack stack2 = new StringStack();
+		popString = stack2.pop();
+		if(popString == null) System.out.println(true);
+		System.out.println(Asserts.assertNotEquals(popString, ""));	
+		
 		
 	}
 

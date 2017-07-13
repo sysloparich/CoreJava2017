@@ -22,6 +22,7 @@ public class StringStack {
 	
 	
 	public String pop(){
+		if(size <= 0) return null;
 		String result = elements[--size];
 		elements[size] = null;
 		return result;
