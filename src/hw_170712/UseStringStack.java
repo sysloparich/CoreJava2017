@@ -20,6 +20,11 @@ public class UseStringStack {
 		System.out.println(Asserts.assertEquals(check1, false));
 		System.out.println(Asserts.assertNotEquals(check1, true));
 		
+		String tosString = stack.tos();		
+		System.out.println(Asserts.assertEquals(tosString, "fourth"));
+		System.out.println(Asserts.assertNotEquals(tosString, "third"));
+		
+		
 		
 	}
 
