@@ -22,7 +22,9 @@ public class StringStack {
 	
 	
 	public String pop(){
-		return null;
+		String result = elements[--size];
+		elements[size] = null;
+		return result;
 	}
 	
 	

@@ -32,6 +32,10 @@ public class UseStringStack {
 		System.out.println(Asserts.assertEquals(stack.size(), 4));
 		System.out.println(Asserts.assertNotEquals(stack.size(), 3));
 		
+		String popString = stack.pop();
+		System.out.println(Asserts.assertEquals(popString, "fourth"));
+		System.out.println(Asserts.assertNotEquals(popString, "third"));	
+		
 	}
 
 }
