@@ -1,5 +1,7 @@
 package hw_170712;
 
+import hw_170710.stringlinkedlist.Node;
+
 public class StringStack {
 
 	private String[] elements; 
@@ -42,6 +44,18 @@ public class StringStack {
 	
 	
 	public String toString(){
-		return super.toString();
+		StringBuilder sb = new StringBuilder("[");
+		
+		if(size != 0){
+			
+			sb.append(elements[0]);
+			for(int i = 1; i < size; ++i){
+				sb.append(", " + elements[i]);
+			}
+			
+		}
+		
+		sb.append("]");
+		return sb.toString();
 	}
 }

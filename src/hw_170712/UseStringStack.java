@@ -1,5 +1,7 @@
 package hw_170712;
 
+import java.util.Stack;
+
 import mytestframework.Asserts;
 
 public class UseStringStack {
@@ -41,6 +43,10 @@ public class UseStringStack {
 		if(popString == null) System.out.println(true);
 		System.out.println(Asserts.assertNotEquals(popString, ""));	
 		
+		System.out.println(Asserts.assertEquals(stack.toString(), "[first, second, third]"));
+		System.out.println(Asserts.assertNotEquals(stack.toString(), ""));
+		System.out.println(Asserts.assertEquals(stack2.toString(), "[]"));
+		System.out.println(Asserts.assertNotEquals(stack2.toString(), ""));
 		
 	}
 
