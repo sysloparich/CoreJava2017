@@ -28,6 +28,7 @@ public class StringStack {
 	
 	
 	public boolean push(String smth){
+		if(size >= elements.length) return false;
 		elements[size++] = smth;
 		return true;
 	}
