@@ -17,7 +17,7 @@ public class StringStack {
 	
 	
 	public int size(){
-		return 0;
+		return size;
 	}
 	
 	
