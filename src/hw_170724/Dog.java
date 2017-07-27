@@ -21,6 +21,18 @@ public class Dog implements Pet {
 			bite();
 			bark();
 		}
+
+		@Override
+		public void caress() {
+			wiggle();
+		}
+
+		@Override
+		public void scratch() {
+			bark();	
+			bark();	
+			bark();				
+		}
 		
 	}
 	
@@ -40,6 +52,19 @@ public class Dog implements Pet {
 			jump();
 			brain = Dog.this.new Hungry();
 		}
+
+		@Override
+		public void caress() {
+			wiggle();
+			jump();
+			wiggle();
+			jump();
+		}
+
+		@Override
+		public void scratch() {
+			bark();		
+		}
 		
 	}
 	
@@ -53,6 +78,17 @@ public class Dog implements Pet {
 		brain.play();
 	}
 
+	@Override
+	public void caress() {
+		brain.caress();
+	}
+	
+	@Override
+	public void scratch() {
+		brain.scratch();
+	}	
+	
+	
 	private void jump() {
 		System.out.println("jumps");
 	}
@@ -71,6 +107,7 @@ public class Dog implements Pet {
 
 	private void bark() {
 		System.out.println("barks");
-	}	
+	}
+
 
 }

@@ -15,7 +15,16 @@ public class TakeCare {
 		pet.play();
 		System.out.println("---");
 		pet.play();
-
+		System.out.println("---");
+		pet.scratch();
+		System.out.println("---");
+		pet.caress();
+		System.out.println("---");
+		pet.feed();
+		System.out.println("---");
+		pet.scratch();
+		System.out.println("---");
+		pet.caress();
 	}
 
 }
