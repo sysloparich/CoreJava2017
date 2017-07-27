@@ -18,9 +18,8 @@ public class Cat implements Pet{
 
 		@Override
 		public void play() {
-			doMyau();
-			wiggle();			
-			wiggle();	
+			doMyau();	
+			doMyau();	
 		}
 
 		@Override
