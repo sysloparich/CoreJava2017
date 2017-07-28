@@ -37,6 +37,7 @@ class CardPile {
 			result = firstCard;
 			firstCard = firstCard.link;
 		}
+		
 		return result;
 	}
 
@@ -50,7 +51,6 @@ class CardPile {
 	public void select(final int tx, final int ty) {
 		// do nothing
 	}
-
 
 	public void display(final Graphics g) {
 		g.setColor(Color.black);

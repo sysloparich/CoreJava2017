@@ -29,6 +29,7 @@ class TablePile extends CardPile {
 	public boolean includes(int tx, int ty) {
 		// don't test bottom of card
 		return x <= tx && tx <= x + Card.width && y <= ty;
+		//return x <= tx && tx <= x + Card.width && y <= ty && ty <= y + Card.height;
 	}
 
 	@Override
@@ -49,6 +50,11 @@ class TablePile extends CardPile {
 		for (int i = 0; i < 4; i++) {
 			if (Solitare.suitPile[i].canTake(topCard)) {
 				Solitare.suitPile[i].push(topCard);
+				
+				if(top() != null){					
+					if(!top().isFaceUp()) top().flip();
+				}
+				
 				return;
 			}
 		}
@@ -56,6 +62,11 @@ class TablePile extends CardPile {
 		for (int i = 0; i < 7; i++) {
 			if (Solitare.tableau[i].canTake(topCard)) {
 				Solitare.tableau[i].push(topCard);
+				
+				if(top() != null){					
+					if(!top().isFaceUp()) top().flip();
+				}
+				
 				return;
 			}
 		}
