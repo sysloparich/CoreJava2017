@@ -6,7 +6,15 @@ interface HamsterBrain extends Brain {
 
 public class Hamster implements Pet{
 	
-	HamsterBrain brain = new HungryHam(this);
+	private HamsterBrain brain = new HungryHam(this);
+	
+	public void setBrain(HamsterBrain hb) {
+		this.brain = hb;
+	}
+	
+	public HamsterBrain getBrain() {
+		return brain;
+	}
 
 	@Override
 	public void feed() {
@@ -55,7 +63,7 @@ class HungryHam implements HamsterBrain {
 		ham.chew();
 		ham.chew();
 		ham.chew();
-		ham.brain = new FedHam(ham);
+		ham.setBrain(new FedHam(ham));
 	}
 
 	@Override
@@ -97,7 +105,7 @@ class FedHam implements HamsterBrain {
 	@Override
 	public void play() {
 		ham.run();
-		ham.brain = new HungryHam(ham);	
+		ham.setBrain(new HungryHam(ham));	
 	}
 
 	@Override
