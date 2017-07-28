@@ -1,95 +1,114 @@
 package hw_170724;
 
+interface HamsterBrain extends Brain {
+	
+}
+
 public class Hamster implements Pet{
+	
+	HamsterBrain brain = new HungryHam(this);
 
 	@Override
 	public void feed() {
-		// TODO Auto-generated method stub
-		
+		brain.feed();
 	}
 
 	@Override
 	public void play() {
-		//throw new UnsupportedOperationException();		
+		brain.play();		
 	}
 
 	@Override
 	public void caress() {
-		// TODO Auto-generated method stub
-		
+		brain.caress();
 	}
 
 	@Override
 	public void scratch() {
-		//throw new UnsupportedOperationException();		
+		brain.scratch();	
 	}
 	
-	
+	public void chew(){
+		System.out.println("chew chew chew");
+	}
 
+	public void sniff(){
+		System.out.println("ff ff ff");
+	}
+	
+	public void run(){
+		System.out.println("run");
+	}
+	
 }
 
-class Helper{
+class HungryHam implements HamsterBrain {
 	
-	private Hamster hamster;
+	private Hamster ham;
 	
-	private class Hungry implements Brain{
+	public HungryHam(Hamster ham){
+		this.ham = ham;
+	}
 
-		@Override
-		public void feed() {
-			// TODO Auto-generated method stub
-			
-		}
+	@Override
+	public void feed() {
+		ham.chew();
+		ham.chew();
+		ham.chew();
+		ham.brain = new FedHam(ham);
+	}
 
-		@Override
-		public void play() {
-			// TODO Auto-generated method stub
-			
-		}
+	@Override
+	public void play() {
+		ham.run();
+		ham.run();
+	}
 
-		@Override
-		public void caress() {
-			// TODO Auto-generated method stub
-			
-		}
+	@Override
+	public void caress() {
+		ham.run();
+		ham.sniff();
+	}
 
-		@Override
-		public void scratch() {
-			// TODO Auto-generated method stub
-			
-		}
-		
+	@Override
+	public void scratch() {
+		ham.sniff();
+		ham.sniff();
+		ham.sniff();
 	}
 	
-	private class Fed implements Brain {
+}
 
-		@Override
-		public void feed() {
-			// TODO Auto-generated method stub
-			
-		}
+class FedHam implements HamsterBrain {
+	
+	private Hamster ham;
+	
+	public FedHam(Hamster ham){
+		this.ham = ham;
+	}	
 
-		@Override
-		public void play() {
-			// TODO Auto-generated method stub
-			
-		}
+	@Override
+	public void feed() {
+		ham.run();
+		ham.sniff();
+		ham.chew();
+	}
 
-		@Override
-		public void caress() {
-			// TODO Auto-generated method stub
-			
-		}
+	@Override
+	public void play() {
+		ham.run();
+		ham.brain = new HungryHam(ham);	
+	}
 
-		@Override
-		public void scratch() {
-			// TODO Auto-generated method stub
-			
-		}
+	@Override
+	public void caress() {
+		ham.sniff();
 		
 	}
-	
-	public Helper(Hamster hamster){
-		this.hamster = hamster;
+
+	@Override
+	public void scratch() {	
+		ham.run();
 	}
 	
 }

@@ -11,6 +11,7 @@ public class TakeCare {
 		
 		pets.add(new Dog());
 		pets.add(new Cat());
+		pets.add(new Hamster());
 		
 		for(Pet pet : pets){
 			pet.play();
