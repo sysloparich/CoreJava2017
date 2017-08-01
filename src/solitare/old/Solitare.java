@@ -66,47 +66,43 @@ public class Solitare extends Applet implements MouseListener {
 		int x = e.getX();
 		int y = e.getY();
 		
-		for (int i = 0; i < 13; i++) {
+		for (int i = 1; i < 13; i++) {
 			if (allPiles[i].includes(x, y)) {
 				pressedCardPile = i;
 				cardStack = allPiles[i].selectCardStack(x, y);
-				//repaint();
 			}
 		}
 		
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {
+	public void mouseReleased(MouseEvent e) {	
 		
-		if(cardStack != null){
+		if(cardStack == null) return;
+		
+		for(int i = 0; i < 13; ++i){
 			
-			Card topCard = cardStack.peek();
-			
-			for (int i = 0; i < 4; i++) {
-				if (Solitare.suitPile[i].canTake(topCard)) {
-					//Solitare.suitPile[i].push(topCard);
-					
-					while(!cardStack.isEmpty()) {
-						Solitare.suitPile[i].push(cardStack.pop());
-					}
-					
-					if(Solitare.allPiles[pressedCardPile].top() != null){					
-						if(!Solitare.allPiles[pressedCardPile].top().isFaceUp()){
-							Solitare.allPiles[pressedCardPile].top().flip();
-						}
-					}
-					repaint();
-					return;
-				}
-			}
-		// else see if any other table pile can take card
-			for (int i = 0; i < 7; i++) {
-				if (Solitare.tableau[i].canTake(topCard)) {
-					//Solitare.tableau[i].push(topCard);
+			if(allPiles[i].includes(e.getX(), e.getY())){
+				
+				if(i < 2){
 					
 					while(!cardStack.isEmpty()){
-						Solitare.tableau[i].push(cardStack.pop());
+						Solitare.allPiles[pressedCardPile].push(cardStack.pop());
+					}
+					
+					cardStack = null;
+					pressedCardPile = -1;
+					
+					repaint();
+					return;
+				}
+				
+				Card topCard = cardStack.peek();
+				
+				if (Solitare.allPiles[i].canTake(topCard)) {
+					
+					while(!cardStack.isEmpty()) {
+						Solitare.allPiles[i].push(cardStack.pop());
 					}
 					
 					if(Solitare.allPiles[pressedCardPile].top() != null){					
@@ -114,19 +110,24 @@ public class Solitare extends Applet implements MouseListener {
 							Solitare.allPiles[pressedCardPile].top().flip();
 						}
 					}
+					
+					cardStack = null;
+					pressedCardPile = -1;
+					
 					repaint();
-					return;
+					return;	
+					
 				}
-			}		
+			}	
 			
-		// else put it back on our pile
-			while(!cardStack.isEmpty()){
-				Solitare.allPiles[pressedCardPile].push(cardStack.pop());
-			}
-			
-			cardStack = null;
-			pressedCardPile = -1;
-		}		
+		}
+		
+		while(!cardStack.isEmpty()){
+			Solitare.allPiles[pressedCardPile].push(cardStack.pop());
+		}
+		
+		cardStack = null;
+		pressedCardPile = -1;
 		
 		repaint();
 		
@@ -138,18 +139,4 @@ public class Solitare extends Applet implements MouseListener {
 	@Override
 	public void mouseExited(MouseEvent e) {}
 
-//	@Override
-//	public boolean mouseDown(Event evt, int x, int y) {
-//		for (int i = 0; i < 13; i++) {
-//			if (allPiles[i].includes(x, y)) {
-//				allPiles[i].select(x, y);
-//				repaint();
-//				return true;
-//			}
-//		}
-//		return true;
-//	}
-
-
-	
 }

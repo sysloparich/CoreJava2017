@@ -30,7 +30,9 @@ class TablePile extends CardPile {
 	@Override
 	public boolean includes(int tx, int ty) {
 		
-		if(top() == null) return false;
+		if(top() == null) {
+			return x <= tx && tx <= x + Card.width && y <= ty && ty <= y + Card.height;
+		}
 		
 		Card tmp = top();
 		int i = 0;
@@ -78,55 +80,6 @@ class TablePile extends CardPile {
 			
 		}
 		else return null;
-		
-//		// if face down, then flip
-//		Card topCard = top();
-//		if (!topCard.isFaceUp()) {
-//			topCard.flip();
-//			return;
-//		}
-
-		// else see if any suit pile can take card
-//		topCard = pop();
-	
-		
-//		for (int i = 0; i < 4; i++) {
-//			if (Solitare.suitPile[i].canTake(topCard)) {
-//				//Solitare.suitPile[i].push(topCard);
-//				
-//				while(!cp.isEmpty()) {
-//					Solitare.suitPile[i].push(cp.pop());
-//				}
-//				
-//				if(top() != null){					
-//					if(!top().isFaceUp()) top().flip();
-//				}
-//				
-//				return;
-//			}
-//		}
-//		// else see if any other table pile can take card
-//		for (int i = 0; i < 7; i++) {
-//			if (Solitare.tableau[i].canTake(topCard)) {
-//				//Solitare.tableau[i].push(topCard);
-//				
-//				while(!cp.isEmpty()){
-//					Solitare.tableau[i].push(cp.pop());
-//				}
-//				
-//				if(top() != null){					
-//					if(!top().isFaceUp()) top().flip();
-//				}
-//				
-//				return;
-//			}
-//		}		
-//		// else put it back on our pile
-//		while(!cp.isEmpty()) push(cp.pop());
-		
-	
-		
-		//push(topCard);
 		
 	}
 
