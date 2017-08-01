@@ -1,6 +1,8 @@
 package solitare.old;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Stack;
 
 class TablePile extends CardPile {
 
@@ -27,9 +29,18 @@ class TablePile extends CardPile {
 
 	@Override
 	public boolean includes(int tx, int ty) {
-		// don't test bottom of card
-		return x <= tx && tx <= x + Card.width && y <= ty;
-		//return x <= tx && tx <= x + Card.width && y <= ty && ty <= y + Card.height;
+		
+		if(top() == null) return false;
+		
+		Card tmp = top();
+		int i = 0;
+		while(tmp.link != null) {
+			tmp = tmp.link;
+			++i;
+		}
+		
+		return(x <= tx && tx <= x + Card.width && y <= ty && ty <= y + 35*i + Card.height);
+
 	}
 
 	@Override
@@ -37,19 +48,52 @@ class TablePile extends CardPile {
 		if (empty()) {
 			return;
 		}
-
-		// if face down, then flip
+		
 		Card topCard = top();
-		if (!topCard.isFaceUp()) {
-			topCard.flip();
-			return;
+		int j = 0;
+		while(topCard.link != null){
+			topCard = topCard.link;
+			++j;
 		}
+		int k = j;
+		topCard = top();
+		while(!(x <= tx && tx <= x + Card.width && y + 35*j <= ty && ty <= y + 35*j + Card.height)){
+			topCard = topCard.link;
+			--j;
+		}
+		
+		Stack<Card> cp = new Stack();
+		if(topCard.isFaceUp()) {
+			int counter = 0;
+			while(counter != k-j+1){
+				cp.push(pop());
+				++counter;
+			}
+			
+			System.out.println("STACK SIZE: " + cp.size());
+			System.out.println("Bottom Card Rank: " + topCard.getRank());
+			System.out.println("=======================");
+			
+		}
+		else return;
+		
+//		// if face down, then flip
+//		Card topCard = top();
+//		if (!topCard.isFaceUp()) {
+//			topCard.flip();
+//			return;
+//		}
 
 		// else see if any suit pile can take card
-		topCard = pop();
+//		topCard = pop();
+		
 		for (int i = 0; i < 4; i++) {
 			if (Solitare.suitPile[i].canTake(topCard)) {
-				Solitare.suitPile[i].push(topCard);
+				//Solitare.suitPile[i].push(topCard);
+				
+				while(!cp.isEmpty()) {
+					Solitare.suitPile[i].push(cp.pop());
+				}
 				
 				if(top() != null){					
 					if(!top().isFaceUp()) top().flip();
@@ -61,7 +105,11 @@ class TablePile extends CardPile {
 		// else see if any other table pile can take card
 		for (int i = 0; i < 7; i++) {
 			if (Solitare.tableau[i].canTake(topCard)) {
-				Solitare.tableau[i].push(topCard);
+				//Solitare.tableau[i].push(topCard);
+				
+				while(!cp.isEmpty()){
+					Solitare.tableau[i].push(cp.pop());
+				}
 				
 				if(top() != null){					
 					if(!top().isFaceUp()) top().flip();
@@ -71,7 +119,9 @@ class TablePile extends CardPile {
 			}
 		}
 		// else put it back on our pile
-		push(topCard);
+		while(!cp.isEmpty()) push(cp.pop());
+		//push(topCard);
+		
 	}
 
 	private int stackDisplay(Graphics g, Card aCard) {
