@@ -2,6 +2,7 @@ package solitare.old;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Stack;
 
 class CardPile {
 
@@ -48,10 +49,6 @@ class CardPile {
 				&& clickY <= y + Card.height;
 	}
 
-	public void select(final int tx, final int ty) {
-		// do nothing
-	}
-
 	public void display(final Graphics g) {
 		g.setColor(Color.black);
 		if (firstCard == null) {
@@ -63,6 +60,14 @@ class CardPile {
 
 	public boolean canTake(final Card aCard) {
 		return false;
+	}
+
+	public void select(final int tx, final int ty) {
+		// do nothing
+	}
+
+	public Stack<Card> selectCardStack(int tx, int ty) {
+		return null;
 	}
 
 }

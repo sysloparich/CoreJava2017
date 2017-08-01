@@ -3,8 +3,17 @@ package solitare.old;
 import java.applet.Applet;
 import java.awt.Event;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
 
-public class Solitare extends Applet {
+
+import java.awt.event.MouseListener;
+import java.util.Stack;
+
+public class Solitare extends Applet implements MouseListener {
+	
+	static Stack<Card> cardStack = null;
+	int pressedCardPile = -1;
+	
 	static DeckPile deckPile;
 	static DiscardPile discardPile;
 	static TablePile tableau[];
@@ -14,6 +23,9 @@ public class Solitare extends Applet {
 	@Override
 	public void init() {
 		// first allocate the arrays
+		
+		addMouseListener(this);
+		
 		allPiles = new CardPile[13];
 		suitPile = new SuitPile[4];
 		tableau = new TablePile[7];
@@ -36,14 +48,108 @@ public class Solitare extends Applet {
 	}
 
 	@Override
-	public boolean mouseDown(Event evt, int x, int y) {
+	public void mouseClicked(MouseEvent e) {
+		
+		int x = e.getX();
+		int y = e.getY();
+		
+		if (allPiles[0].includes(x, y)) {
+			allPiles[0].select(x, y);
+			repaint();
+		}
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		
+		int x = e.getX();
+		int y = e.getY();
+		
 		for (int i = 0; i < 13; i++) {
 			if (allPiles[i].includes(x, y)) {
-				allPiles[i].select(x, y);
-				repaint();
-				return true;
+				pressedCardPile = i;
+				cardStack = allPiles[i].selectCardStack(x, y);
+				//repaint();
 			}
 		}
-		return true;
+		
 	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		
+		if(cardStack != null){
+			
+			Card topCard = cardStack.peek();
+			
+			for (int i = 0; i < 4; i++) {
+				if (Solitare.suitPile[i].canTake(topCard)) {
+					//Solitare.suitPile[i].push(topCard);
+					
+					while(!cardStack.isEmpty()) {
+						Solitare.suitPile[i].push(cardStack.pop());
+					}
+					
+					if(Solitare.allPiles[pressedCardPile].top() != null){					
+						if(!Solitare.allPiles[pressedCardPile].top().isFaceUp()){
+							Solitare.allPiles[pressedCardPile].top().flip();
+						}
+					}
+					repaint();
+					return;
+				}
+			}
+		// else see if any other table pile can take card
+			for (int i = 0; i < 7; i++) {
+				if (Solitare.tableau[i].canTake(topCard)) {
+					//Solitare.tableau[i].push(topCard);
+					
+					while(!cardStack.isEmpty()){
+						Solitare.tableau[i].push(cardStack.pop());
+					}
+					
+					if(Solitare.allPiles[pressedCardPile].top() != null){					
+						if(!Solitare.allPiles[pressedCardPile].top().isFaceUp()){
+							Solitare.allPiles[pressedCardPile].top().flip();
+						}
+					}
+					repaint();
+					return;
+				}
+			}		
+			
+		// else put it back on our pile
+			while(!cardStack.isEmpty()){
+				Solitare.allPiles[pressedCardPile].push(cardStack.pop());
+			}
+			
+			cardStack = null;
+			pressedCardPile = -1;
+		}		
+		
+		repaint();
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {}
+
+	@Override
+	public void mouseExited(MouseEvent e) {}
+
+//	@Override
+//	public boolean mouseDown(Event evt, int x, int y) {
+//		for (int i = 0; i < 13; i++) {
+//			if (allPiles[i].includes(x, y)) {
+//				allPiles[i].select(x, y);
+//				repaint();
+//				return true;
+//			}
+//		}
+//		return true;
+//	}
+
+
+	
 }
