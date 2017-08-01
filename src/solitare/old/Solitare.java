@@ -53,8 +53,8 @@ public class Solitare extends Applet implements MouseListener {
 		int x = e.getX();
 		int y = e.getY();
 		
-		if (allPiles[0].includes(x, y)) {
-			allPiles[0].select(x, y);
+		if (Solitare.deckPile.includes(x, y)) {
+			Solitare.deckPile.select(x, y);
 			repaint();
 		}
 
@@ -86,11 +86,7 @@ public class Solitare extends Applet implements MouseListener {
 				
 				if(i < 2){
 					
-					while(!cardStack.isEmpty()){
-						Solitare.allPiles[pressedCardPile].push(cardStack.pop());
-					}
-					
-					cardStack = null;
+					putStackToCardPile(pressedCardPile);
 					pressedCardPile = -1;
 					
 					repaint();
@@ -101,9 +97,7 @@ public class Solitare extends Applet implements MouseListener {
 				
 				if (Solitare.allPiles[i].canTake(topCard)) {
 					
-					while(!cardStack.isEmpty()) {
-						Solitare.allPiles[i].push(cardStack.pop());
-					}
+					putStackToCardPile(i);
 					
 					if(Solitare.allPiles[pressedCardPile].top() != null){					
 						if(!Solitare.allPiles[pressedCardPile].top().isFaceUp()){
@@ -111,7 +105,6 @@ public class Solitare extends Applet implements MouseListener {
 						}
 					}
 					
-					cardStack = null;
 					pressedCardPile = -1;
 					
 					repaint();
@@ -122,15 +115,18 @@ public class Solitare extends Applet implements MouseListener {
 			
 		}
 		
-		while(!cardStack.isEmpty()){
-			Solitare.allPiles[pressedCardPile].push(cardStack.pop());
-		}
-		
-		cardStack = null;
+		putStackToCardPile(pressedCardPile);
 		pressedCardPile = -1;
-		
+
 		repaint();
 		
+	}
+
+	private void putStackToCardPile(int to) {
+		while(!cardStack.isEmpty()){
+			Solitare.allPiles[to].push(cardStack.pop());
+		}					
+		cardStack = null;
 	}
 
 	@Override

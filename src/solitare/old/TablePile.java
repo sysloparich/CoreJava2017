@@ -30,15 +30,13 @@ class TablePile extends CardPile {
 	@Override
 	public boolean includes(int tx, int ty) {
 		
-		if(top() == null) {
-			return x <= tx && tx <= x + Card.width && y <= ty && ty <= y + Card.height;
-		}
-		
-		Card tmp = top();
 		int i = 0;
-		while(tmp.link != null) {
-			tmp = tmp.link;
-			++i;
+		if(top() != null) {
+			Card tmp = top();
+			while(tmp.link != null) {
+				tmp = tmp.link;
+				++i;
+			}
 		}
 		
 		return(x <= tx && tx <= x + Card.width && y <= ty && ty <= y + 35*i + Card.height);
@@ -57,6 +55,7 @@ class TablePile extends CardPile {
 			topCard = topCard.link;
 			++j;
 		}
+		
 		int k = j;
 		topCard = top();
 		while(!(x <= tx && tx <= x + Card.width && y + 35*j <= ty && ty <= y + 35*j + Card.height)){
@@ -79,7 +78,7 @@ class TablePile extends CardPile {
 			return cp;
 			
 		}
-		else return null;
+		return null;
 		
 	}
 
