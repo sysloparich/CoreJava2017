@@ -4,8 +4,11 @@ import java.util.Random;
 
 public class A implements Comparable<A>{
 
-	static Random r = new Random();
-	int x = r.nextInt(10);
+	static final int SEED = 67;
+	static Random r = new Random(SEED);
+	private static final int MAX_RANGE = 1_000_000;
+	
+	int x = r.nextInt(MAX_RANGE);
 	
 	@Override
 	public String toString() {
