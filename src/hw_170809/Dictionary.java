@@ -6,32 +6,34 @@ import java.util.List;
 
 import hw_170809.Dictionary.Pair;
 
-public class Dictionary implements Iterable<Pair> {
+public class Dictionary<K,V> implements Iterable<Pair<K,V>> {
 
 	private static final int MAX = 3;
 
-	public static class Pair {
-		public Pair(String key2, String value2) {
+	public static class Pair<K,V> {
+		public Pair(K key2, V value2) {
 			key = key2;
 			value = value2;
 		}
 
-		String key;
-		String value;
+		K key;
+		V value;
 	}
 
-	List<Pair>[] data = new List[MAX];
+	@SuppressWarnings("unchecked")
+	List<Pair<K, V>>[] data = new List[MAX];
 
-	public void put(String key, String value) {
+	public void put(K key, V value) {
+		
 		int index = hash(key);
 		if (data[index] == null) {
 			data[index] = new ArrayList<>();
 		}
 
-		Pair pair = getPair(key);
+		Pair<K,V> pair = getPair(key);
 
 		if (pair == null) {
-			data[index].add(new Pair(key, value));
+			data[index].add(new Pair<K,V>(key, value));
 			return;
 		}
 
@@ -39,22 +41,22 @@ public class Dictionary implements Iterable<Pair> {
 
 	}
 
-	private int hash(String key) {
+	private int hash(K key) {
 		return key.hashCode() & 0x7FFFFFFF % data.length;
 	}
 
-	public String get(String key) {
-		Pair pair = getPair(key);
+	public V get(K key) {
+		Pair<K,V> pair = getPair(key);
 		return pair == null ? null : pair.value;
 	}
 
-	private Pair getPair(String key) {
+	private Pair<K,V> getPair(K key) {
 		int index = hash(key);
-		List<Pair> list = data[index];
+		List<Pair<K,V>> list = data[index];
 		if (list == null) { // guard condition
 			return null;
 		}
-		for (Pair pair : list) {
+		for (Pair<K,V> pair : list) {
 			if (pair.key.equals(key)) {
 				return pair;
 			}
@@ -64,10 +66,10 @@ public class Dictionary implements Iterable<Pair> {
 	}
 
 	@Override
-	public Iterator<Pair> iterator() {
-		return new Iterator<Dictionary.Pair>() {
+	public Iterator<Pair<K,V>> iterator() {
+		return new Iterator<Dictionary.Pair<K,V>>() {
 			int currentElement = -1;
-			Iterator<Pair> listIterator = null;
+			Iterator<Pair<K,V>> listIterator = null;
 
 			@Override
 			public boolean hasNext() {
@@ -80,7 +82,7 @@ public class Dictionary implements Iterable<Pair> {
 
 				for (++currentElement; listIterator == null
 						&& currentElement < data.length; currentElement++) {
-					List<Pair> list = data[currentElement];
+					List<Pair<K,V>> list = data[currentElement];
 					if (list == null) {
 						continue;
 					}
@@ -95,7 +97,7 @@ public class Dictionary implements Iterable<Pair> {
 			}
 
 			@Override
-			public Pair next() {
+			public Pair<K,V> next() {
 				if (!hasNext()) {
 					throw new IllegalArgumentException();
 				}
