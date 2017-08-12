@@ -15,7 +15,7 @@ public class BinarySearchExample {
 
 	public static void main(String[] args) {
 		
-		System.out.println("All time in Millis");
+		System.out.println("Addition and Sorting time in Millis");
 
 		LinkedList<A> linkedList = new LinkedList<>();	
 		Instant start = Instant.now();		
@@ -27,45 +27,47 @@ public class BinarySearchExample {
 		start = Instant.now();	
 		addElements(arrayList);	
 		stop = Instant.now();
-		System.out.println("ArrayList add 1_000_000 elements : " + Duration.between(start, stop).toMillis());
-				
-		TreeSet<A> treeSet = new TreeSet<>();
-		start = Instant.now();		
-		addElements(treeSet);			
-		stop = Instant.now();
-		System.out.println("TreeSet add 1_000_000 elements : " + Duration.between(start, stop).toMillis());	
-		
+		System.out.println("ArrayList add 1_000_000 elements : " + Duration.between(start, stop).toMillis());	
 		
 		start = Instant.now();
 		Collections.sort(linkedList);
 		stop = Instant.now();
-		System.out.println("LinkedList sort 1_000_000 elements : " + Duration.between(start, stop).toMillis());	
+		System.out.println("LinkedList sort 1_000_000 elements : " + Duration.between(start, stop).toMillis());
 		
 		start = Instant.now();
 		Collections.sort(arrayList);
 		stop = Instant.now();
 		System.out.println("ArrayList sort 1_000_000 elements : " + Duration.between(start, stop).toMillis());		
+		
+		
+		TreeSet<A> treeSet = new TreeSet<>();
+		start = Instant.now();		
+		addElements(treeSet);			
+		stop = Instant.now();
+		System.out.println("TreeSet add (and sort) 1_000_000 elements : " + Duration.between(start, stop).toMillis());
 				
-//		A key = new A();
+		A key = new A();
 		
-//		int index = Collections.binarySearch(treeSet, key);
+		System.out.println("Binary Search time in Nanos");
+		System.out.println("Searching element : " + key.x);
 		
-//		System.out.println(linkedList);
-//		
-//		A key = new A();
-//		System.out.println(key);
-//		
-//		int index = Collections.binarySearch(linkedList, key);
-//		
-//		System.out.println(index);
-//		
-//		Collections.sort(linkedList);
-//		
-//		System.out.println(linkedList);
-//		
-//		index = Collections.binarySearch(linkedList, key);
-//		
-//		System.out.println(index);			
+		start = Instant.now();
+		int index = Collections.binarySearch(linkedList, key);
+		stop = Instant.now();
+		System.out.println("Index of element: " + index + "; LinkedList search : " + 
+							Duration.between(start, stop).toNanos());
+		
+		start = Instant.now();
+		index = Collections.binarySearch(arrayList, key);
+		stop = Instant.now();
+		System.out.println("Index of element: " + index + "; ArrayList search : " + 
+							Duration.between(start, stop).toNanos());
+		
+		start = Instant.now();
+		boolean contains = treeSet.contains(key);
+		stop = Instant.now();
+		System.out.println("Contains? " + contains + " TreeSet search : " + 
+							Duration.between(start, stop).toNanos());						
 		
 	}
 
