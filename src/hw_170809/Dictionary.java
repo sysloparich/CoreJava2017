@@ -9,6 +9,9 @@ import hw_170809.Dictionary.Pair;
 public class Dictionary<K,V> implements Iterable<Pair<K,V>> {
 
 	private static final int MAX = 3;
+	private static final double LOAD_FACTOR = 0.75;
+	
+	int size = 0;
 
 	public static class Pair<K,V> {
 		public Pair(K key2, V value2) {
@@ -20,12 +23,32 @@ public class Dictionary<K,V> implements Iterable<Pair<K,V>> {
 		V value;
 	}
 
+	List<Pair<K, V>>[] data;
+	
 	@SuppressWarnings("unchecked")
-	List<Pair<K, V>>[] data = new List[MAX];
+	Dictionary(){		
+		data = new List[MAX];
+	}
+	
+	@SuppressWarnings("unchecked")
+	Dictionary(int size){
+		
+		try{			
+			data = new List[size];
+		}
+		catch(RuntimeException ex){
+			System.err.println("Invalid array size, Run with default parameters");
+			data = new List[MAX];
+		}
+		
+	}
 
 	public void put(K key, V value) {
 		
+		if(data.length == 0) resize(MAX);
+		
 		int index = hash(key);
+		
 		if (data[index] == null) {
 			data[index] = new ArrayList<>();
 		}
@@ -34,11 +57,28 @@ public class Dictionary<K,V> implements Iterable<Pair<K,V>> {
 
 		if (pair == null) {
 			data[index].add(new Pair<K,V>(key, value));
+			++size;
+			if(size >= data.length*LOAD_FACTOR) resize(data.length*2);			
 			return;
 		}
 
 		pair.value = value;
 
+	}
+
+	private void resize(int capacity) {
+
+		List<Pair<K, V>>[] tmp = data;
+		data = new List[capacity];
+		size = 0;
+		
+		for(List<Pair<K,V>> list : tmp){
+			if(list == null || list.isEmpty()) continue;
+			for(Pair<K,V> pair : list){
+				put(pair.key, pair.value);
+			}
+		}
+		
 	}
 
 	private int hash(K key) {

@@ -29,25 +29,52 @@ public class UseDictionary {
 //			System.out.println(pair.key + " : " + pair.value);
 //		}
 		
-		Dictionary<Integer,String> d = new Dictionary<>();
+//		Dictionary<Integer,String> d = new Dictionary<>();
+//		
+//		d.put(1, "New York");
+//		d.put(3, "Boston");
+//		d.put(27, "Москва");
+//		d.put(3, "Москва");
+//		d.put(6, "Москва");
+//		d.put(5, "Москва");
+//		d.put(0, "Москва");
+//		d.put(-1, "Москва");
+//		d.put(23, "Москва");
+//		
+//		System.out.println(d.get(6));
+//		System.out.println(d.get(0));
+//		System.out.println(d.get(3));
+//		
+//		d.put(7, "Петербург");
+//		System.out.println(d.get(7));
+//		
+//		for (Pair<Integer,String> pair : d) {
+//			System.out.println(pair.key + " : " + pair.value);
+//		}
 		
-		d.put(1, "New York");
-		d.put(3, "Boston");
-		d.put(27, "Москва");
-		d.put(3, "Москва");
-		d.put(6, "Москва");
-		d.put(5, "Москва");
-		d.put(0, "Москва");
-		d.put(-1, "Москва");
-		d.put(23, "Москва");
+		Dictionary<Integer,String> d = new Dictionary<>(0);
 		
-		System.out.println(d.get(6));
-		System.out.println(d.get(0));
-		System.out.println(d.get(3));
+		System.out.println(d.data.length);
+		System.out.println(d.size);
+		for (Pair<Integer,String> pair : d) {
+			System.out.println(pair.key + " : " + pair.value);
+		}
 		
-		d.put(7, "Петербург");
-		System.out.println(d.get(7));
-		
+		d.put(0, "VASYA");
+		System.out.println(d.data.length);
+		System.out.println(d.size);
+		for (Pair<Integer,String> pair : d) {
+			System.out.println(pair.key + " : " + pair.value);
+		}
+		d.put(3, "PETYA");
+		System.out.println(d.data.length);
+		System.out.println(d.size);
+		for (Pair<Integer,String> pair : d) {
+			System.out.println(pair.key + " : " + pair.value);
+		}
+		d.put(6, "PETYA");
+		System.out.println(d.data.length);
+		System.out.println(d.size);
 		for (Pair<Integer,String> pair : d) {
 			System.out.println(pair.key + " : " + pair.value);
 		}
