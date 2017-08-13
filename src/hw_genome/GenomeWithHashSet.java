@@ -7,7 +7,7 @@ public class GenomeWithHashSet {
 	
 	private static final int GENOME_SIZE = 3000000;
 
-	private static void findDuplicates(byte[] data, int w) {
+	public static void findDuplicates(byte[] data, int w) {
 		int counter = 0;
 		
 		Set<Word> words = new HashSet();

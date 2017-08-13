@@ -2,9 +2,9 @@ package hw_genome;
 
 public class Genome {
 
-	private static final int GENOME_SIZE = 3000;
+	private static final int GENOME_SIZE = 3000000;
 
-	private static void findDuplicates(byte[] data, int w) {
+	public static void findDuplicates(byte[] data, int w) {
 		int counter = 0;
 		
 		for(int i = 0; i < data.length-w; ++i){
@@ -22,7 +22,6 @@ public class Genome {
 				}
 			}
 		}
-		System.out.println();
 		System.out.println(counter);
 	}
 	
@@ -32,7 +31,7 @@ public class Genome {
 		//byte[] data = {65,65,65,65,65,65,65,65,65,68,68,68,65};
 		//byte[] data = {65,65,65};
 		
-		System.out.println(data);
+		//System.out.println(data);
 		
 		/*
 		for(byte b:data){

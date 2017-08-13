@@ -9,7 +9,16 @@ public class GenomeWithSort {
 
 	private static final int GENOME_SIZE = 3000000;
 	
-	private static void findDuplicates(List<Word> list) {
+	public static void findDuplicates(byte[] data, int w) {
+		
+		List<Word> list = new ArrayList<>();
+
+		for (int i = 0; i <= data.length - w; i++) {
+			list.add(new Word(data, i));
+		}
+
+		Collections.sort(list);
+		
 		int count = 0;
 		if(list.size() > 1){
 			for (int i = 1; i < list.size(); ++i) {
@@ -18,6 +27,7 @@ public class GenomeWithSort {
 				}
 			}			
 		}
+		
 		System.out.println(count);
 	}
 	
@@ -26,14 +36,6 @@ public class GenomeWithSort {
 		byte[] data = DataGenerator.generate(GENOME_SIZE);
 		//byte[] data = {65,65,65,65,65,65,65,65,65,68,68,68,65};
 		//byte[] data = {65,65,65};
-
-		List<Word> list = new ArrayList<>();
-
-		for (int i = 0; i <= data.length - Word.WORD_SIZE; i++) {
-			list.add(new Word(data, i));
-		}
-
-		Collections.sort(list);
 		
 		/*
 		for (Word word : list) {
@@ -44,7 +46,7 @@ public class GenomeWithSort {
 		}
 		*/
 		
-		findDuplicates(list);
+		findDuplicates(data, Word.WORD_SIZE);
 		
 	}
 
