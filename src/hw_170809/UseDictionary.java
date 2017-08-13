@@ -1,84 +1,55 @@
 package hw_170809;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.util.Random;
+
 import hw_170809.Dictionary.Pair;
 
 public class UseDictionary {
 	
 	public static void main(String[] args) {
 		
-//		Dictionary<String,String> d = new Dictionary<>();
-//		
-//		d.put("Pete", "New York");
-//		d.put("John", "Boston");
-//		d.put("Вася", "Москва");
-//		d.put("Петя", "Москва");
-//		d.put("Боря", "Москва");
-//		d.put("Оля", "Москва");
-//		d.put("Жанна", "Москва");
-//		d.put("Маша", "Москва");
-//		d.put("Вано", "Москва");
-//		
-//		System.out.println(d.get("Ann"));
-//		System.out.println(d.get("John"));
-//		System.out.println(d.get("Вася"));
-//		
-//		d.put("Вася", "Петербург");
-//		System.out.println(d.get("Вася"));
-//		
-//		for (Pair<String,String> pair : d) {
-//			System.out.println(pair.key + " : " + pair.value);
-//		}
+		Dictionary<Integer, Integer> d1 = new Dictionary();
+		Dictionary<Integer, Integer> d2 = new Dictionary();
+		Dictionary<Integer, Integer> d3 = new Dictionary();
+			
+		System.out.println("add 1000 elements :" + calculateFillingTime(d1, 1000));
+		System.out.println("add 10000 elements :" + calculateFillingTime(d2, 10000));
+		System.out.println("add 100000 elements :" + calculateFillingTime(d3, 100000));
 		
-//		Dictionary<Integer,String> d = new Dictionary<>();
-//		
-//		d.put(1, "New York");
-//		d.put(3, "Boston");
-//		d.put(27, "Москва");
-//		d.put(3, "Москва");
-//		d.put(6, "Москва");
-//		d.put(5, "Москва");
-//		d.put(0, "Москва");
-//		d.put(-1, "Москва");
-//		d.put(23, "Москва");
-//		
-//		System.out.println(d.get(6));
-//		System.out.println(d.get(0));
-//		System.out.println(d.get(3));
-//		
-//		d.put(7, "Петербург");
-//		System.out.println(d.get(7));
-//		
-//		for (Pair<Integer,String> pair : d) {
-//			System.out.println(pair.key + " : " + pair.value);
-//		}
+
+		System.out.println("Search element which is not present (in 1000) : " + calculateSearchingTime(d1, 1_000_067));
+		System.out.println("Search element which is not present (in 10000) : " + calculateSearchingTime(d2, 1_000_067));
+		System.out.println("Search element which is not present (in 100000) : " + calculateSearchingTime(d3, 1_000_067));
+	
 		
-		Dictionary<Integer,String> d = new Dictionary<>(0);
+		d1.put(1_000_067, 667);
+		d2.put(1_000_067, 667);
+		d3.put(1_000_067, 667);
+
 		
-		System.out.println(d.data.length);
-		System.out.println(d.size);
-		for (Pair<Integer,String> pair : d) {
-			System.out.println(pair.key + " : " + pair.value);
+		System.out.println("Search element which is present (in 1000) : " + calculateSearchingTime(d1,1_000_067));
+		System.out.println("Search element which is present (in 10000) : " + calculateSearchingTime(d2,1_000_067));
+		System.out.println("Search element which is present (in 100000) : " + calculateSearchingTime(d3,1_000_067));
+		
+	}
+	
+	private static long calculateSearchingTime(Dictionary<Integer, Integer> dictionary, int key) {
+		Instant start = Instant.now();
+		dictionary.get(key);
+		Instant stop = Instant.now();
+		return Duration.between(start, stop).toNanos();	
+	}
+
+	private static long calculateFillingTime(Dictionary<Integer, Integer> dictionary, int size) {
+		Random r = new Random();
+		Instant start = Instant.now();
+		for(int i = 0; i < size; ++i){
+			dictionary.put(r.nextInt(100000), r.nextInt());
 		}
-		
-		d.put(0, "VASYA");
-		System.out.println(d.data.length);
-		System.out.println(d.size);
-		for (Pair<Integer,String> pair : d) {
-			System.out.println(pair.key + " : " + pair.value);
-		}
-		d.put(3, "PETYA");
-		System.out.println(d.data.length);
-		System.out.println(d.size);
-		for (Pair<Integer,String> pair : d) {
-			System.out.println(pair.key + " : " + pair.value);
-		}
-		d.put(6, "PETYA");
-		System.out.println(d.data.length);
-		System.out.println(d.size);
-		for (Pair<Integer,String> pair : d) {
-			System.out.println(pair.key + " : " + pair.value);
-		}
-		
+		Instant stop = Instant.now();
+		return Duration.between(start, stop).toNanos();		
 	}
 
 }

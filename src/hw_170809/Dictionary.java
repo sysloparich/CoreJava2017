@@ -53,7 +53,7 @@ public class Dictionary<K,V> implements Iterable<Pair<K,V>> {
 			data[index] = new ArrayList<>();
 		}
 
-		Pair<K,V> pair = getPair(key);
+		Pair<K,V> pair = getPair(key, index);
 
 		if (pair == null) {
 			data[index].add(new Pair<K,V>(key, value));
@@ -86,12 +86,11 @@ public class Dictionary<K,V> implements Iterable<Pair<K,V>> {
 	}
 
 	public V get(K key) {
-		Pair<K,V> pair = getPair(key);
+		Pair<K,V> pair = getPair(key, hash(key));
 		return pair == null ? null : pair.value;
 	}
 
-	private Pair<K,V> getPair(K key) {
-		int index = hash(key);
+	private Pair<K,V> getPair(K key, int index) {
 		List<Pair<K,V>> list = data[index];
 		if (list == null) { // guard condition
 			return null;
