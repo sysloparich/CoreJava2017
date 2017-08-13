@@ -54,7 +54,7 @@ public class BinarySearchExample {
 		stop = Instant.now();
 		tset += Duration.between(start, stop).toNanos();
 		System.out.println("TreeSet add (and sort) 1_000_000 elements : " + Duration.between(start, stop).toNanos());
-				
+		
 		A key = new A();
 		
 		System.out.println("Searching element : " + key.x);
@@ -91,11 +91,13 @@ public class BinarySearchExample {
 	}
 
 	private static void addElements(AbstractCollection<A> structure) {
+		A some = new A();
 		for (int i = 0; i < NUMBER_OF_ELEMENTS; i++) {
-			A some = new A();
 			structure.add(some);
+			some = new A();
 			//System.out.print(some);
 		}
+		some.resetRandom();
 	}
 	
 }

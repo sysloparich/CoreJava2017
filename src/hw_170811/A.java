@@ -20,5 +20,8 @@ public class A implements Comparable<A>{
 		return x - other.x;
 	}	
 	
+	public void resetRandom(){
+		r = new Random(SEED);
+	}
 	
 }
