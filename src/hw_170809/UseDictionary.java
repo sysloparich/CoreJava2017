@@ -14,13 +14,13 @@ public class UseDictionary {
 		Dictionary<Integer, Integer> d2 = new Dictionary();
 		Dictionary<Integer, Integer> d3 = new Dictionary();
 			
-		System.out.println("add 1000 elements :" + calculateFillingTime(d1, 1000));
-		System.out.println("add 10000 elements :" + calculateFillingTime(d2, 10000));
-		System.out.println("add 100000 elements :" + calculateFillingTime(d3, 100000));
+		System.out.println("add 1000 elements   : " + calculateFillingTime(d1, 1000));
+		System.out.println("add 10000 elements  : " + calculateFillingTime(d2, 10000));
+		System.out.println("add 100000 elements : " + calculateFillingTime(d3, 100000));
 		
 
-		System.out.println("Search element which is not present (in 1000) : " + calculateSearchingTime(d1, 1_000_067));
-		System.out.println("Search element which is not present (in 10000) : " + calculateSearchingTime(d2, 1_000_067));
+		System.out.println("Search element which is not present (in 1000)   : " + calculateSearchingTime(d1, 1_000_067));
+		System.out.println("Search element which is not present (in 10000)  : " + calculateSearchingTime(d2, 1_000_067));
 		System.out.println("Search element which is not present (in 100000) : " + calculateSearchingTime(d3, 1_000_067));
 	
 		
@@ -29,17 +29,20 @@ public class UseDictionary {
 		d3.put(1_000_067, 667);
 
 		
-		System.out.println("Search element which is present (in 1000) : " + calculateSearchingTime(d1,1_000_067));
-		System.out.println("Search element which is present (in 10000) : " + calculateSearchingTime(d2,1_000_067));
+		System.out.println("Search element which is present (in 1000)   : " + calculateSearchingTime(d1,1_000_067));
+		System.out.println("Search element which is present (in 10000)  : " + calculateSearchingTime(d2,1_000_067));
 		System.out.println("Search element which is present (in 100000) : " + calculateSearchingTime(d3,1_000_067));
 		
 	}
 	
 	private static long calculateSearchingTime(Dictionary<Integer, Integer> dictionary, int key) {
-		Instant start = Instant.now();
+		//Instant start = Instant.now();
+		long start = System.nanoTime();
 		dictionary.get(key);
-		Instant stop = Instant.now();
-		return Duration.between(start, stop).toNanos();	
+		//Instant stop = Instant.now();
+		long stop = System.nanoTime();
+		//return Duration.between(start, stop).toNanos();	
+		return (stop-start);
 	}
 
 	private static long calculateFillingTime(Dictionary<Integer, Integer> dictionary, int size) {
