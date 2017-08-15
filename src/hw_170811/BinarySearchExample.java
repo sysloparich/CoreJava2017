@@ -66,19 +66,29 @@ public class BinarySearchExample {
 		System.out.println("Index of element: " + index + "; LinkedList search : " + 
 							Duration.between(start, stop).toNanos());
 		
-		start = Instant.now();
+//		start = Instant.now();
+		long tmp1 = System.nanoTime();
 		index = Collections.binarySearch(arrayList, key);
-		stop = Instant.now();
-		alist += Duration.between(start, stop).toNanos();
+//		stop = Instant.now();
+		long tmp2 = System.nanoTime();
+//		alist += Duration.between(start, stop).toNanos();
+		alist += (tmp2-tmp1);
+//		System.out.println("Index of element: " + index + "; ArrayList search : " + 
+//							Duration.between(start, stop).toNanos());
 		System.out.println("Index of element: " + index + "; ArrayList search : " + 
-							Duration.between(start, stop).toNanos());
+				(tmp2-tmp1));
 		
-		start = Instant.now();
+//		start = Instant.now();
+		tmp1 = System.nanoTime();
 		boolean contains = treeSet.contains(key);
-		stop = Instant.now();
-		tset += Duration.between(start, stop).toNanos();
+		//stop = Instant.now();
+		tmp2 = System.nanoTime();
+		//tset += Duration.between(start, stop).toNanos();
+		tset += (tmp2-tmp1);
+//		System.out.println("Contains? " + contains + " TreeSet search : " + 
+//							Duration.between(start, stop).toNanos());
 		System.out.println("Contains? " + contains + " TreeSet search : " + 
-							Duration.between(start, stop).toNanos());
+				(tmp2-tmp1));
 		
 		System.out.println("=========================");
 		
