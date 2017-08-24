@@ -19,9 +19,35 @@ public class FrequencyCounter {
 		list.add("four");
 		list.add("one");
 		
-		Map<String, Integer> map = freqCounterWithPut(list);
-		System.out.println(map);
+		System.out.println(freqCounterWithPut(list));
+		System.out.println(freqCounterWithPutIfAbsent(list));
+		//System.out.println(freqCounterWithMerge(list));
 		
+		
+		
+	}
+
+	private static Map<String,Integer> freqCounterWithMerge(List<String> list) {
+
+		Map<String, Integer> map = new TreeMap<>();
+
+		
+		
+		return map;
+	}
+
+	private static Map<String,Integer> freqCounterWithPutIfAbsent(List<String> list) {
+
+		Map<String, Integer> map = new TreeMap<>();
+
+		for (String string : list) {
+			
+			Integer count = map.putIfAbsent(string, 1);
+			if(count != null) map.put(string, ++count);
+			
+		}
+		
+		return map;
 	}
 
 	private static Map<String,Integer> freqCounterWithPut(List<String> list) {
