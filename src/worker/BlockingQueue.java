@@ -6,9 +6,20 @@ public class BlockingQueue<T> {
 
 	Queue<T> items = new LinkedList<>();
 	
+	public Queue<T> getItems() {
+		return items;
+	}
+	
 	public void put(T item) {
 		synchronized (items) {
 			items.offer(item);
+			items.notify();
+		}
+	}
+	
+	public void addFirst(T item) {
+		synchronized (items) {
+			((LinkedList<T>) items).addFirst(item);
 			items.notify();
 		}
 	}
@@ -25,8 +36,6 @@ public class BlockingQueue<T> {
 			return items.poll();
 		}
 	}
-
-	
 	
 }
 

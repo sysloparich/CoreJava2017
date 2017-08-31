@@ -14,14 +14,25 @@ public class UseWorker {
 			System.out.println("world!");
 		});
 		
-		worker.shutdown();
+//		try {
+//			Thread.sleep(1000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
-		worker.execute(() -> {
-			System.out.println("world1!");
-		});
-		worker.execute(() -> {
-			System.out.println("world2!");
-		});
+
+		System.out.println(worker.shutdownNow().size());
+		
+//		worker.shutdown();
+//		
+//		worker.execute(() -> {
+//			System.out.println("world1!");
+//		});
+//		worker.execute(() -> {
+//			System.out.println("world2!");
+//		});
+		
 	}
 
 }
