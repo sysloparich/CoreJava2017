@@ -7,8 +7,11 @@ import java.util.concurrent.Executor;
 public class Worker implements Executor {
 	
 	static final Runnable POISON_PILL = () -> {};
+
+	private boolean stop = false;
 	
 	BlockingQueue<Runnable> tasks = new BlockingQueue<>();
+
 	
 	public Worker() {
 		new Thread(this::processTasks).start();
@@ -16,7 +19,11 @@ public class Worker implements Executor {
 
 	@Override
 	public void execute(Runnable command) {
+		
+		if(stop) throw new IllegalStateException();
+		if(command == POISON_PILL) stop = true;
 		tasks.put(command);
+		
 	}
 	
 	private void processTasks() {
@@ -31,7 +38,8 @@ public class Worker implements Executor {
 	}
 	
 	public void shutdown() {
-		tasks.put(POISON_PILL);
+		//tasks.put(POISON_PILL);
+		execute(POISON_PILL);
 	}
 	
 	public List<Runnable>  shutdownNow() {
